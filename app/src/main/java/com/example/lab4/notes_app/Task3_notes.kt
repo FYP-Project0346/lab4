@@ -1,6 +1,7 @@
 package com.example.lab4.notes_app
 
 import android.content.Context
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +24,7 @@ class Task3_notes {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Display(nav: NavController, context: Context = LocalContext.current){
+        var notes = Functions().getAllFiles(context)
         Scaffold(
             topBar = {
                 TopAppBar(title = { Text(text = "Keep Notes") })
@@ -39,8 +41,13 @@ class Task3_notes {
                 modifier = Modifier.padding(it)
             ) {
                     LazyColumn(content = {
-                        items(5){
-                            ListItem(headlineContent = { Text(text = "List No: ${it}") })
+                        items(notes.size){
+                            ListItem(
+                                headlineContent = { Text(text = notes[it].title) },
+                                modifier = Modifier.clickable {
+
+                                }
+                                )
                         }
                     })
             }

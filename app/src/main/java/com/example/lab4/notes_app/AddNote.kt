@@ -5,12 +5,9 @@ import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -28,8 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class AddNote {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -49,7 +44,7 @@ class AddNote {
                     actions = {
                         Button(onClick = {
                             var model = NoteModel(title = tfTitle, content = tfContent, datetime = Functions().getDateTime())
-                            if(model.save(context)){
+                            if(Functions().saveNote(context, model)){
                                 Toast.makeText(context, "Note Saved", Toast.LENGTH_SHORT).show()
                                 nav.navigate("/notes")
                             }else{

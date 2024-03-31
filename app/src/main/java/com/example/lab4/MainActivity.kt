@@ -53,13 +53,7 @@ fun MainScreen(context: Context = LocalContext.current, nav: NavController) {
                 title = { Text(text = "Welcome to Lab 4") },
                 actions = {
                     Button(onClick = {
-                        var files = context.filesDir.listFiles()?.toList() ?: emptyList()
-                        files = files.filter {
-                            it.name != "datastore" || it.name != "profileInstalled"
-                        }
-                        files.map {file ->
-                            println(file.name)
-                        }
+
 
                     }) {
                         Text(text = "Test Button")
