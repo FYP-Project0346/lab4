@@ -75,4 +75,9 @@ class Functions {
         var data = bytes.toString(Charsets.UTF_8)
         return separate(fileid, data)
     }
+
+
+    fun deleteNote(context:Context, noteId:String):Boolean{
+        return File(context.filesDir, noteId).delete()
+    }
 }

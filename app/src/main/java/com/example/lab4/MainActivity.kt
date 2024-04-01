@@ -3,7 +3,6 @@ package com.example.lab4
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
@@ -27,10 +26,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lab4.notes_app.AddNote
-import com.example.lab4.notes_app.Functions
-import com.example.lab4.notes_app.NoteModel
+import com.example.lab4.notes_app.DataPassing as notepassing
+import com.example.lab4.notes_app.ShowNote
 import com.example.lab4.notes_app.Task3_notes
-import java.time.LocalDateTime
+import com.example.lab4.task4_images.DisplayImage
+import com.example.lab4.task4_images.Task4_images
+import com.example.lab4.task4_images.DataPassing as imagepassing
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -87,6 +88,12 @@ fun MainScreen(context: Context = LocalContext.current, nav: NavController) {
                 }) {
                 Text(text = "TASK 3. Keep Notes Application")
             }
+            Button(
+                modifier = Modifier.fillMaxWidth(), onClick = {
+                    nav.navigate("/show-images")
+                }) {
+                Text(text = "TASK 4. Show Images App")
+            }
         }
     }
 }
@@ -111,6 +118,17 @@ fun Main(context: Context = LocalContext.current) {
         composable("/add-note") {
             AddNote().Display(navController)
         }
+        composable("/show-note") {
+            ShowNote().Display(navController, notepassing.note)
+        }
+        composable("/show-images") {
+            Task4_images().Display(nav = navController)
+        }
+
+        composable("/display-image") {
+            DisplayImage().Display(nav = navController, imagepassing.file)
+        }
+
     }
 }
 
